@@ -2,7 +2,7 @@
 
 export PROJECT_ID="project-liveability-demo"   
 gcloud config set project ${PROJECT_ID}
-git clone https://github.com/projectliveabilitydemo/liveability
+git clone https://github.com/projectliveability/liveability-demo
 
 #2.bash to create service account for cloud build
 cd liveability-demo
