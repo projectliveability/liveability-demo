@@ -1,0 +1,121 @@
+#1.Open cloud shell  and export and set the project
+
+export PROJECT_ID="project-liveability-demo"   
+gcloud config set project ${PROJECT_ID}
+git clone https://github.com/projectliveabilitydemo/liveability
+
+#2.bash to create service account for cloud build
+cd liveability
+bash CloudBuild_SvcAccount_Setup.sh
+
+#3.Create a composer
+
+#4.Create trigger for intial setup. Use "initial_account_setup_cloudbuild.yaml"
+#5. Create trigger for terraform. "Use terraform-cloudbuild.yaml"
+#6.create trigger for tables.Use "ddl_cloudbuild.yaml"
+#7.Create trigger for DAG copy
+#8.create trigger for datastream. Use "datastream_cloudbuild.yaml"
+
+till here we will be setting up before the demo
+
+In demo
+----------
+Step 1: Initial Setup (Tim)
+1. Open Project Dashboard, two APIs, Service Account, Cloud Storage. Confirm Cloud Build API and IAM API are enabled. 
+2. Click on Cloud Build for Initial Setup
+3. Show APIs disabled - Dataflow API and Pub/Sub API
+4. Show service account for project not created
+5. Show cloud storage not created.
+6. After Cloud build job is complete, go back to the same tabs. SHow APIs enabled, Service Account created, Cloud Storage with data, ddl and credential folders. 
+
+Step 2: Terraform (Tim)
+1. Click the trigger for terraform
+
+Step 3: Table Creation (Jannet)
+1.click the trigger for table creation
+2. Show BigQuery Tables
+
+Step 4: Dataflow for Batch Job (Jannet) 
+1. Cloud Storage - data 
+2. Open Dataflow 
+3. Open Cloud Composer. Click on DAGs folder to open. 
+4. Cloud Build open - trigger job to upload dags to DAG folder. 
+_DAGS_FOLDER = gs://....../ (don't forget to put the / at the end) (Note:- get the DAGs path from DAG folder)
+History - show job is successful.
+Show DAGs folder. All DAGs should be present. 
+5. Composer - Open Airflow Click on the trigger for DAG copy
+--> click on Airflow UI--> admin--> variables-->enter the below one by one
+    -->GCS_BUCKET= gs://project-liveability-demo
+    -->LOCATION =  australia-southeast1
+    -->PROJECT_ID = project-liveability-demo
+Go back to Airflow. 
+Manually trigger sportsclub.
+If required - religious organisation is the next trigger. 
+Go to Dataflow -> Show the steps that are running. 
+Finally go to BigQuery and show the tables have data loaded. Have a query ready to display data. 
+
+Step 5: Streaming Input (Jannet, Tim)
+1. In project-liveability-demo, Open Appsheet, Cloud Build, Datastream, Pub/Sub, Dataflow, Cloud SQL and HLD
+In project-liveability-final, open Dataflow, BigQuery
+
+2. In project-liveability-demo.
+Open first Appsheet - Liveability1, Have the addresses that has to be input. Ensure to put the post code again in current/new/work address.
+current address: 134 Manningham Road.Bulleen.3105
+new address: 76 Elwood Street.Brighton.3186
+work address: 28 Dorrington St.Greenvale.3059
+Do not submit.
+2. Go to Cloud Build, click the trigger for datastream.
+3. Go to HLD. Confirm Datastream has started. Show Pub/Sub, Dataflow.
+4. Come back to Appsheet and submit. 
+5. Go to project-liveability-final.
+6. Open CloudSQL via Cloud shell in Final project. Enter the following commands in Cloud shell-
+   export PROJECT_ID="project-liveability-final"
+   gcloud config set project ${PROJECT_ID}
+   gcloud sql connect liveability-mysql-instance --user=appsheet --quiet
+   Once prompted, enter the password 12345678 and show the user entry in cloudSQL by entering -
+   Select * From db_liveability.user_activity Order by created_date Desc Limit 1;
+7. Go to BigQuery and show that entry has been inserted. 
+
+
+Step 6: DBT for Transformations
+1. In old project: project-liveability-final 
+    Open BigQuery, DBT Batch Data - Job Run, DBT User Output - Job Run, DBT Analytics Output - Development, Appsheet for Output, GeoViz, Data Studio Report
+
+DBT - https://cloud.getdbt.com/#/accounts/109389/settings/
+Appsheet - https://www.appsheet.com/Template/AppDef?appName=Liveability-1002015676&appId=62b0066d-439a-490e-b6cf-73374af153af&quickStart=False#Home
+GeoViz - Manually Open using Export Data from BQ
+Data Studio Report - https://datastudio.google.com/u/0/reporting/ac01d986-5ad7-490d-a61d-59eea8bceb78/page/tEnnC
+
+2. Show BQ tables.
+3. Run the Batch job. When job is complete, go back to BQ and check transform_batchdata is ready
+4. Run the Final User Output job. 
+5. In the meantime, go to DBT Analytics, open models -> lineage. Then go to Jobs, run the job.
+6. BAck to BQ, show finaldata. The tables are views.
+Go to Appsheet
+Then GeoViz, run the query and provide below inputs and choose colour. 
+7. Back to BQ, show analytics data is ready. 
+Show Data Studio Report and click on Refresh. 
+
+
+
+Now run dataflow (not able to figure out how to use cloud composer to trigger till now)
+--------------------
+cd ..
+cd liveability
+cd dataflow
+bash dataflow_run.sh
+
+Then in the already set up project
+--------------------
+show DBT, datastudio and geoviz
+Then show the result in app sheet too
+
+
+If the git clone asks for username and pwd
+-----------------------------------------
+Username for github =projectliveabilitydemo
+password=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
+
+
+
+
