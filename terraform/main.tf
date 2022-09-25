@@ -429,8 +429,9 @@ resource "google_sql_database" "database" {
 # Creates the BigQuery dataset.
 resource "google_bigquery_dataset" "liv_bq_dataset" {
   project    = var.gcp_project  
-  dataset_id = var.liv_bq_dataset["id"]
-  location   = var.liv_bq_dataset["location"]
+  count      = length(var.liv_bq_dataset)
+  dataset_id = var.liv_bq_dataset[count.index]["id"]
+  location   = var.liv_bq_dataset[count.index]["location"]
 
   labels = {
     "environment" = "development"
