@@ -5,7 +5,7 @@ gcloud config set project ${PROJECT_ID}
 git clone https://github.com/projectliveabilitydemo/liveability
 
 #2.bash to create service account for cloud build
-cd liveability
+cd liveability-demo
 bash CloudBuild_SvcAccount_Setup.sh
 
 #3.Create a composer
@@ -101,7 +101,7 @@ Show Data Studio Report and click on Refresh.
 Now run dataflow (not able to figure out how to use cloud composer to trigger till now)
 --------------------
 cd ..
-cd liveability
+cd liveability-demo
 cd dataflow
 bash dataflow_run.sh
 
@@ -113,7 +113,7 @@ Then show the result in app sheet too
 
 If the git clone asks for username and pwd
 -----------------------------------------
-Username for github =projectliveabilitydemo
+Username for github =projectliveability
 password=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
 
 
