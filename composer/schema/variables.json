@@ -1,0 +1,5 @@
+{
+    "GCS_BUCKET": "gs://project-liveability-demo",
+    "LOCATION": "australia-southeast1",
+    "PROJECT_ID": "project-liveability-demo"
+}
