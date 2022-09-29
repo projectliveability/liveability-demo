@@ -93,9 +93,9 @@ Data Studio Report - https://datastudio.google.com/u/0/reporting/ac01d986-5ad7-4
 6. BAck to BQ, show finaldata. The tables are views.
 Go to Appsheet
 Then GeoViz, run the query and provide below inputs and choose colour. 
+Child Care Centres,Bars & Restaurants,Shopping Centers
 7. Back to BQ, show analytics data is ready. 
 Show Data Studio Report and click on Refresh. 
-
 
 
 Now run dataflow (not able to figure out how to use cloud composer to trigger till now)
