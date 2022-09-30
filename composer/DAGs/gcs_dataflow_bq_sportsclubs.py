@@ -30,8 +30,8 @@ with models.DAG(
     # The id you will see in the DAG airflow page
     "composer_dataflow_dag_sportsclubs",
     default_args=default_args,
-    # The interval with which to schedule the DAG
-    schedule_interval=datetime.timedelta(days=1),  # Override to match your needs
+    # The interval with which to schedule the DAG, chnaged the below so that the job won't trigger automatically
+    schedule_interval=datetime.timedelta(days=3),  # Override to match your needs
 ) as dag:
 
     read_from_cloudstorage = DummyOperator(
