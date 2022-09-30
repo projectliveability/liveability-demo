@@ -13,7 +13,7 @@ gce_region= models.Variable.get("LOCATION")
 
 default_args = {
     # Tell airflow to start one day ago, so that it runs as soon as you upload it
-    "start_date": days_ago(1),
+    "start_date": days_ago(0),
     "dataflow_default_options": {
         "project": project_id,
         # Set to your zone
@@ -30,8 +30,8 @@ with models.DAG(
     # The id you will see in the DAG airflow page
     "dag_to_load_childcare_data",
     default_args=default_args,
-    # The interval with which to schedule the DAG
-    schedule_interval=datetime.timedelta(days=1),  # Override to match your needs
+   # The interval with which to schedule the DAG, chnaged the below so that the job won't trigger automatically
+    schedule_interval=datetime.timedelta(days=3),  # Override to match your needs
 ) as dag:
 
     read_from_cloudstorage = DummyOperator(
