@@ -86,6 +86,7 @@ Step 6: DBT for Transformations
 DBT - https://cloud.getdbt.com/#/accounts/109389/settings/
 Appsheet - https://www.appsheet.com/Template/AppDef?appName=Liveability-1002015676&appId=62b0066d-439a-490e-b6cf-73374af153af&quickStart=False#Home
 GeoViz - Manually Open using Export Data from BQ
+    Query: SELECT * FROM `project-liveability-final.finaldata.liveability_data`;
 Data Studio Report - https://datastudio.google.com/u/0/reporting/ac01d986-5ad7-490d-a61d-59eea8bceb78/page/tEnnC
 
 2. Show BQ tables.
